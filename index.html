@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>MALWARE LINKS</title>
+
+<style>
+body {
+    margin: 0;
+    background: #0f1115;
+    font-family: Consolas, monospace;
+    color: #c9c9c9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.panel {
+    width: 520px;
+    background: #16181d;
+    border: 1px solid #2a2d34;
+    border-radius: 10px;
+    padding: 24px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.6);
+}
+
+h1 {
+    text-align: center;
+    letter-spacing: 3px;
+    font-size: 22px;
+    color: #e0e0e0;
+    margin-bottom: 18px;
+}
+
+.link {
+    display: block;
+    padding: 10px 12px;
+    margin: 8px 0;
+    border: 1px solid #2e3138;
+    border-radius: 6px;
+    background: #1b1e24;
+    color: #bdbdbd;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    word-break: break-all;
+}
+
+.link:hover {
+    background: #23262d;
+    color: #ffffff;
+    border-color: #3a3d45;
+    transform: translateX(5px);
+}
+
+.footer {
+    text-align: center;
+    font-size: 11px;
+    margin-top: 14px;
+    opacity: 0.5;
+}
+</style>
+</head>
+
+<body>
+
+<div class="panel">
+    <h1>MALWARE LINKS</h1>
+    <div id="links"></div>
+    <div class="footer">
+        internal use only
+    </div>
+</div>
+
+<script>
+fetch("links.txt")
+.then(r => r.text())
+.then(data => {
+    const box = document.getElementById("links");
+    data.split("\n").forEach(line => {
+        const url = line.trim();
+        if (!url) return;
+
+        const a = document.createElement("a");
+        a.href = url;
+        a.textContent = url;
+        a.className = "link";
+        a.target = "_blank";
+        box.appendChild(a);
+    });
+});
+</script>
+
+</body>
+</html>
